@@ -2,21 +2,42 @@ import { useState } from "react";
 
 export default function Main() {
   const [meme, setMeme] = useState({
-    topText: "top text 1",
-    bottomText: "bottom text 1",
+    topText: "Fill in top text here",
+    bottomText: "Fill in bottom text here",
     randomImage: "http://i.imgflip.com/1bij.jpg",
   });
+
+  function handleChange(event) {
+    const { value, name } = event.target;
+    setMeme((prevMeme) => {
+      return {
+        ...prevMeme,
+        [name]: value,
+      };
+    });
+  }
+
   return (
     <main>
       <div className="form">
         <label>
           Top Text
-          <input type="text" placeholder="One does not simply" name="topText" />
+          <input
+            type="text"
+            onChange={handleChange}
+            placeholder="test text top"
+            name="topText"
+          />
         </label>
 
         <label>
           Bottom Text
-          <input type="text" placeholder="Walk into Mordor" name="bottomText" />
+          <input
+            type="text"
+            onChange={handleChange}
+            placeholder="test text bottom"
+            name="bottomText"
+          />
         </label>
         <button>Get a new meme image</button>
       </div>
